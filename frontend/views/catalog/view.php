@@ -12,14 +12,6 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Books', 'url' => ['index']];
 
-//$crumbs = [];
-//$parent = $model->category;
-//$crumbs[] = ['label' => $parent->name, 'url' => ['category', 'id' => $parent->id]];
-//while ($parent = $parent->parent) {
-//    $crumbs[] = ['label' => $parent->name, 'url' => ['category', 'id' => $parent->id]];
-//}
-//$this->params['breadcrumbs'] = array_merge($this->params['breadcrumbs'], array_reverse($crumbs));
-
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -1,19 +1,16 @@
 <?php
 
-use yii\data\ActiveDataProvider;
-use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\Book */
+/* @var $model frontend\models\Author */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Books', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Authors', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="book-view">
+<div class="author-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -33,11 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'description:ntext',
-            [
-                'label' => 'Authors',
-                'value' => implode(', ', ArrayHelper::map($model->authors, 'id', 'name')),
-            ],
         ],
     ]) ?>
 

@@ -15,7 +15,6 @@ use yii\bootstrap\ActiveForm;
 
     <div class="row">
         <div class="col-md-6">
-            <?= $form->field($model, 'created_at')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

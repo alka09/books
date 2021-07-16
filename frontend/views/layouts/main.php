@@ -38,7 +38,9 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Catalog', 'url' => ['/catalog/index']],
-        ['label' => 'Admin', 'items' => [
+        ['label' => 'Admin',
+        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->username == 'admin',
+         'items' => [
             ['label' => 'Books', 'url' => ['/admin/books/index']],
             ['label' => 'Authors', 'url' => ['/admin/authors/index']],
             ['label' => 'Book Authors', 'url' => ['/admin/book-authors/index']],

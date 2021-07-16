@@ -16,7 +16,7 @@ $authorLinks[] = Html::a(Html::encode($author->name), ['author', 'author' => $au
     </div>
     <div class="panel-body">
 <?php if ($authorLinks): ?>
-            <p>Tags: <?= implode(', ', $authorLinks) ?></p>
+            <p>Authors: <?= implode(', ', $authorLinks) ?></p>
         <?php endif; ?>
         <div><?= Yii::$app->formatter->asNtext($model->description) ?></div>
     </div>

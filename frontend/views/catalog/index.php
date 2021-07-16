@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="catalog-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php $this->widget('SiteSearch'); ?>
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,

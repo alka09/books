@@ -27,8 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'id',
+//            'created_at',
+            [
+                'label' => 'created_at',
+                'attribute' => 'created_at',
+                'format' => ['date', 'php:d-m-Y']
+            ],
             'name',
-            'description:ntext',
+//            'description:ntext',
+            [
+                'label' => 'description',
+                'attribute' => 'description',
+                'contentOptions' => ['style' => 'white-space: normal;']
+
+            ],
             [
                 'label' => 'Authors',
                 'attribute' => 'author_id',

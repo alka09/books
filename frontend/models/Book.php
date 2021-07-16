@@ -5,6 +5,7 @@ namespace frontend\models;
 
 use frontend\models\query\BookQuery;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\db\Exception;
@@ -17,6 +18,7 @@ use yii\db\StaleObjectException;
  * @property string $name
  * @property string $description
  * @property integer $created_at
+ * @property integer $updated_at
  *
  * @property BookAuthor[] $productTags
  * @property Author[] $authors
@@ -48,6 +50,23 @@ class Book extends ActiveRecord
             'name' => 'Название книги',
             'description' => 'Краткое содержание',
             'authorsArray' => 'Авторы',
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors(): array
+    {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value' => function(){ return date('Y-m-d');},
+            ],
         ];
     }
 
