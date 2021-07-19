@@ -1,10 +1,10 @@
 <?php
 
 use frontend\models\admin\search\BookSearch;
+use frontend\models\SearchForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ListView;
-use yii\widgets\Pjax;
 
 /* @var $searchModel BookSearch */
 /* @var $this yii\web\View */
@@ -13,10 +13,11 @@ use yii\widgets\Pjax;
 $this->title = 'Catalog';
 $this->params['breadcrumbs'][] = $this->title;
 
+$model = new BookSearch();
 
 ?>
 <div class="catalog-index">
-    <?php Pjax::begin(); ?>
+
     <!-- Search -->
     <section class="box search">
         <form method="get" action="<?= Url::to(['/catalog/search']) ?>>">
@@ -31,6 +32,4 @@ $this->params['breadcrumbs'][] = $this->title;
         'layout' => "{items}\n{pager}",
         'itemView' => '_item',
     ]); ?>
-
-    <?php Pjax::end(); ?>
 </div>

@@ -45,11 +45,26 @@ return [
             'errorAction' => 'site/error',
         ],
 
-        'backendUrlManager' => require __DIR__ . '/../../backend/config/urlManager.php',
-        'frontendUrlManager' => require __DIR__ . '/urlManager.php',
-        'urlManager' => function () {
-            return Yii::$app->get('frontendUrlManager');
-        },
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                '' => 'site/index',
+                '<_a:about|contact|signup|login|logout>' => 'site/<_a>',
+
+                'catalog' => 'catalog/index',
+                'catalog/<id:\d+>' => 'catalog/view',
+                'catalog/<_c:[\w\-]+>/<_a:[\w-]+>' => 'catalog/<_c>/<_a>',
+                'catalog/<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>' => 'catalog/<_c>/<_a>',
+//                'catalog/<id:\d+>/<_a:\[\w-]+>' => 'catalog/<_a>',
+            ],
+        ],
+
+//        'backendUrlManager' => require __DIR__ . '/../../backend/config/urlManager.php',
+//        'frontendUrlManager' => require __DIR__ . '/urlManager.php',
+//        'urlManager' => function () {
+//            return Yii::$app->get('frontendUrlManager');
+//        },
 
     ],
     'params' => $params,

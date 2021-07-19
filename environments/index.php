@@ -32,28 +32,25 @@ return [
     'Development' => [
         'path' => 'dev',
         'setWritable' => [
-            'common/runtime',
             'backend/runtime',
             'backend/web/assets',
-            'console/runtime',
             'frontend/runtime',
             'frontend/web/assets',
         ],
         'setExecutable' => [
             'yii',
-            'yii_test',
+            'tests/codeception/bin/yii',
         ],
         'setCookieValidationKey' => [
-            'common/config/params-local.php',
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
         ],
     ],
     'Production' => [
         'path' => 'prod',
         'setWritable' => [
-            'common/runtime',
             'backend/runtime',
             'backend/web/assets',
-            'console/runtime',
             'frontend/runtime',
             'frontend/web/assets',
         ],
@@ -61,7 +58,24 @@ return [
             'yii',
         ],
         'setCookieValidationKey' => [
-            'common/config/params-local.php',
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
+        ],
+    ],
+    'Heroku' => [
+        'path' => 'heroku',
+        'setWritable' => [
+            'backend/runtime',
+            'backend/web/assets',
+            'frontend/runtime',
+            'frontend/web/assets',
+        ],
+        'setExecutable' => [
+            'yii',
+        ],
+        'setCookieValidationKey' => [
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
         ],
     ],
 ];

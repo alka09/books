@@ -5,12 +5,31 @@ namespace frontend\controllers;
 
 use frontend\models\Book;
 use frontend\models\Author;
+use frontend\models\admin\search\BookSearch;
+use frontend\tests\functional\HomeCest;
+use Yii;
+use yii\base\BaseObject;
 use yii\data\ActiveDataProvider;
+use yii\data\Pagination;
+use yii\debug\models\timeline\DataProvider;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 class CatalogController extends Controller
 {
+
+    public function beforeAction($action)
+    {
+        $model = new BookSearch();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $q = Html::encode($model->q);
+            return $this->redirect(Yii::$app->urlManager->createUrl(['catalog/search', 'q' => $q]));
+        }
+        return true;
+    }
+
     public function actionIndex(): string
     {
         $dataProvider = new ActiveDataProvider([
@@ -22,9 +41,9 @@ class CatalogController extends Controller
         ]);
     }
 
-    public function actionAuthor($name): string
+    public function actionAuthor($author): string
     {
-        $author = $this->findAuthorModel($name);
+        $author = $this->findAuthorModel($author);
 
         $dataProvider = new ActiveDataProvider([
             'query' => Book::find()->forAuthor($author->id)->orderBy(['id' => SORT_DESC]),
@@ -73,4 +92,18 @@ class CatalogController extends Controller
         }
     }
 
+    public function actionSearch(): string
+    {
+//        $model = new BookSearch();
+//
+//        $dataProvider = $model->search(Yii::$app->request->queryParams);
+//
+//        return $this->render('search', [
+//            'dataProvider' => $dataProvider,
+//        ]);
+
+        return $this->render('search');
+
+    }
 }
+
